@@ -1,0 +1,25 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int a,b,c,d, minim;
+    cout<<"a=";cin>>a;
+    cout<<"b=";cin>>b;
+    cout<<"c=";cin>>c;
+    cout<<"d=";cin>>d;
+    if(a<b && a<c && a<d){
+        minim = a;
+    }
+    else if(b<a && b<c && b<d){
+        minim = b;
+    }
+    else if(c<a && c<b && c<d){
+        minim = c;
+    }
+    else{
+        minim = d;
+    }
+    cout<<minim;
+}
