@@ -1,0 +1,14 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int i, nr_1=1, nr_2, nr_0=0;
+    for(i=1;i<20;i++){
+        nr_2=nr_1 + nr_0;
+        nr_0 = nr_1;
+        nr_1= nr_2;
+    }
+    cout<<nr_2;
+}
