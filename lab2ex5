@@ -1,0 +1,21 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n,k, rst;
+    cout<<"n=";cin>>n;
+    cout<<"k=";cin>>k;
+    if(n<1 || k<1){
+        cout<<"valori incorecte";
+        return 0;
+    }
+    rst = n%k;
+    if(rst==0){
+        cout<<"numarul n este divizibil la numarul k";
+    }
+    else{
+        cout<<"numarul n NU este divizibil la numarul k";
+    }
+}
