@@ -1,0 +1,16 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n, z ,s,u;
+    cout<<"n=";cin>>n;
+    if(n<= 100 || n>999){
+        return 0;
+    }
+    s = n/100;
+    u = n%10;
+    z = n%100 - u;
+    cout<<s<<" "<<z/10<<" "<<u;
+}
