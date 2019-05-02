@@ -1,0 +1,14 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int a,b, x;
+    cout<<"ax+b=0"<<endl;
+    cout<<"a=";cin>>a;
+    cout<<"b=";cin>>b;
+    x = -b/a;
+    cout<<"x="<<x<<endlf;
+    cout<<a<<"*"<<x<<"+"<<b<<"="<<0;
+}
