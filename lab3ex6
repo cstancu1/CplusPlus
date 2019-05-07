@@ -1,0 +1,74 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n,i,j = 2, sum=0;
+    cout<<"n=";cin>>n;
+
+    //S1 = 1+2+3+ . . .
+    for(i=0;i<=n;i++){
+        sum=sum+i;
+    }
+    cout<<"S1="<<sum<<endl;
+
+    sum=0;
+    //S2 = 2 + 4 + 6 + . . .
+    for(i=1;i<=n;i++){
+        sum = sum + j;
+        j = j+2;
+    }
+    cout<<"S2="<<sum<<endl;
+
+    //S3 = 1+3+5 . . .
+    sum=0;
+    j=1;
+    for(i=1;i<=n;i++){
+        sum = sum + j;
+        j = j+2;
+    }
+    cout<<"S3="<<sum<<endl;
+
+    //S4 = 1 + 1*2 + 1*2*3 + . . .
+    j=1;
+    sum=0;
+    for(i=1;i<=n;i++){
+        j = j*i;
+        sum = sum + j;
+    }
+    cout<<"S4="<<sum<<endl;
+
+    //S5
+    double suma=0;
+    double f;
+    j=2;
+    for(i=1;i<=n;i++){
+        f = (double)i/(double)j;
+        suma = suma+f;
+        j+=1;
+    }
+    cout<<"S5="<<suma<<endl;
+
+    //S6
+    suma=0;
+    j=2;
+    int a;
+    for(i=1;i<=n;i++){
+        a = (i+1)*(i+2);
+        f = (double)i/(double)a;
+        suma = suma+f;
+    }
+    cout<<"S6="<<suma<<endl;
+
+    //S7
+    suma=0;
+    int mul=1;
+    double div;
+    for(i=1;i<=n;i++){
+        mul = mul*i;
+        div = 1/(double)a;
+        suma = suma + div;
+    }
+    cout<<"S7="<<suma<<endl;
+}
