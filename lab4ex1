@@ -1,0 +1,33 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n,a=0,sum=0;
+    int min_nr;
+    int min_val=0;
+    int last_val;
+    while(n!=0){
+        cout<<"n=";cin>>n;
+        if(n==0){
+            break;
+        }
+        a+=1;
+        if(n%3!=0){
+            sum = sum+ n;
+        }
+        last_val = n;
+        if(min_val==0){
+            min_val=last_val;
+            min_nr = a;
+        }
+        if(n<min_val){
+            min_val = n;
+            min_nr = a;
+        }
+    }
+    cout<<"total="<<a-1<<endl;
+    cout<<"media="<<sum / a<<endl;
+    cout<<"min="<<min_val<<"  nr=" <<min_nr<<endl;
+}
