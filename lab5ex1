@@ -1,0 +1,28 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    unsigned long int n, v[100], i, poz_max, poz_min, minim=0, maxim=0, total=0;
+    cout<<"n=";cin>>n;
+    for(i=1; i<=n; i++){
+        cout<<"v["<<i<<"]="; cin>>v[i];
+        total++;
+        }
+    for(i=1; i<=total; i++){
+        if(v[i]>maxim){
+            maxim = v[i];
+            poz_max = i;
+        }
+    }
+    cout<<"max= "<<maxim<<" pozitia="<<poz_max<<endl;
+    minim = maxim;
+    for(i=1; i<=total;i++){
+        if(v[i]<minim){
+            minim=v[i];
+            poz_min = i;
+        }
+    }
+    cout<<"min= "<<minim<<" pozitia="<<poz_min;
+}
