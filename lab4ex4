@@ -1,0 +1,21 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    unsigned long int n, i, c, j=0;
+    cout<<"n=";cin>>n;
+    cout<<"c=";cin>>c;
+
+    do{
+        i = n%10;
+        n = n/10;
+        if(i == c){
+            j++;
+        }
+    }
+    while(n>=1);
+    cout<<j;
+
+}
