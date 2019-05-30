@@ -1,0 +1,16 @@
+#include <iostream>
+
+#include <string.h>
+
+using namespace std;
+int main() {
+  char s[100], i;
+  cout << "s=";
+  cin.get(s, 100);
+  for (i = strlen(s); i >= 0; i--)
+    if (strchr("bcdfghjklmnpqrstvxyzBCDFGHJKLMNPQRSTVXYZ", s[i])) {
+      cout << s[i];
+      break;
+    }
+  return 0;
+}
