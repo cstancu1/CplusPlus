@@ -1,0 +1,37 @@
+#include <iostream>
+
+#include <math.h>
+
+using namespace std;
+int main() {
+  int n, v[100], w[100], i, k = 0, x, j;
+  float media;
+  cout << "n=";
+  cin >> n; 
+  for (i = 1; i <= n; i++) 
+  {
+    cout << "v[" << i << "]=";
+    cin >> v[i];
+    cout << endl;
+  }
+  for (i = 1; i <= n; i++) {
+    k++;
+    w[k] = v[i];
+  }
+  for (j = 1; j <= k; j++)
+  {
+    if (w[j] < w[j + 1]) {
+      media = float((w[j] + w[j + 1]) / 2);
+      x = j + 1;
+      for (i = k - 1; i >= x; i--) {
+        k++;
+        w[i + 1] = w[i];
+      }
+      w[j + 1] = media;
+      j = j + 2;
+    }
+  }
+  for (j = 1; j <= k; j++) 
+    cout << w[j] <<" ";
+  return 0;
+}
