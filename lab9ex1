@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+int ack(int x) 
+{if(x>=12)
+        return x-1;
+ else
+        return ack(ack(x+2));}
+int main()
+{int x;   
+ cout<<"x="; cin>>x;    
+ cout<<ack(x);  
+ cout<<endl;
+return 0;}
