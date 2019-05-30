@@ -1,0 +1,42 @@
+#include <iostream>
+
+using namespace std;
+int main() {
+  int a[100][100], n, i, j; 
+  cout << "n=";
+  cin >> n; 
+  for (i = 1; i <= n; i++) 
+    for (j = 1; j <= n; j++) {
+      cout << "a[" << i << "][" << j << "]=";
+      cin >> a[i][j];
+    }
+  cout << "nord:" << endl; 
+  for (i = 1; i <= n; i++) {
+    for (j = 1; j <= n; j++)
+      if (i == 1 && i < j && j != n)
+        cout << a[i][j] << " ";
+  }
+  cout << endl;
+  cout << "sud:" << endl;
+  for (i = 1; i <= n; i++) {
+    for (j = 1; j <= n; j++)
+      if (i == n && i > j && j != 1)
+        cout << a[i][j] << " ";
+  }
+  cout << endl;
+  cout << "est:" << endl;
+  for (i = 1; i <= n; i++) {
+    for (j = 1; j <= n; j++)
+      if (j == n && i < j && i != 1)
+        cout << a[i][j] << " ";
+  }
+  cout << endl;
+  cout << "vest:" << endl;
+  for (i = 1; i <= n; i++) {
+    for (j = 1; j <= n; j++)
+      if (j == 1 && i > j && i != n)
+        cout << a[i][j] << " ";
+  }
+  cout << endl;
+  return 0;
+}
