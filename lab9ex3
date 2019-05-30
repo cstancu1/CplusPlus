@@ -1,0 +1,34 @@
+#include <iostream>
+
+using namespace std;
+int factorial(int n) 
+{
+  if (n > 1)
+    return n * factorial(n - 1);
+  else
+    return 1;
+}
+int main() {
+  int n, a, b, c, d, S1, S2, S3, S4;
+  float e, f, g, S5, S6, S7; 
+  cout << "n=";
+  cin >> n; 
+  for (a = 1; a <= n; a++)
+    S1 = S1 + a;
+  for (b = 1; b <= n; b++)
+    if (b % 2 == 0)
+      S2 = S2 + b;
+  for (c = 1; c <= n; c++)
+    if (c % 2 != 0)
+      S3 = S3 + c;
+  for (d = 1; d <= n; d++)
+    S4 = S4 + factorial(n);
+  for (e = 1; e <= n; e++)
+    S5 = S5 + (e / e + 1);
+  for (f = 1; f <= n; f++)
+    S6 = S6 + f / ((f + 1) * (f + 2));
+  for (g = 1; g <= n; g++)
+    S7 = S7 + 1 / factorial(n);
+  cout << endl;
+  return 0;
+}
