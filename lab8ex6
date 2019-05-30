@@ -1,0 +1,32 @@
+#include <iostream>
+
+#include <string.h>
+
+using namespace std;
+int pal(char s[100]) {
+  int ok = 1;
+  int a = 0, b = strlen(s) - 1;
+  while (ok == 1 && a <= b) {
+    if (s[a] != s[b])
+      ok = 0;
+    else {
+      a++;
+      b--;
+    }
+  }
+  if (ok == 1)
+    return 1;
+  else
+    return 0;
+}
+int main() {
+  char s[100];
+  cout << "s=";
+  cin.get(s, 100);
+  pal(s);
+  if (pal(s) == 1)
+    cout << "este palindrom.";
+  else
+    cout << "nu este palindrom.";
+  return 0;
+}
