@@ -1,0 +1,28 @@
+#include <iostream>
+
+#include <math.h>
+
+using namespace std;
+int prim(unsigned long int n) 
+{
+  int ok = 1, d;
+  for (d = 2; d <= sqrt(n); d++)
+    if (n % d == 0)
+      ok = 0;
+  return ok;
+}
+int invers(unsigned long int n) 
+{
+  unsigned long int inv;
+  inv = inv * 10 + n % 10;
+  n = n / 10;
+}
+int main() {
+  int n, i;
+  cout << "n = ";
+  cin >> n; 
+  for (i = 10; i <= 99; i++)
+    if (prim(n) == prim(invers(n)))
+      cout << n;
+  return 0;
+}
