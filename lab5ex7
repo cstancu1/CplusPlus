@@ -1,0 +1,25 @@
+#include <iostream>
+
+using namespace std;
+int main() {
+  int w[100], i, a = 0, cpy;
+  unsigned long int n; 
+  cout << "n=";
+  cin >> n; 
+  cpy = n;
+  while (n != 0)
+  {
+    a++;
+    n = n / 10;
+  }
+  n = cpy;
+  for (i = a; i >= 1; i--) 
+  {
+    w[i] = n % 10;
+    n = n / 10;
+  }
+  for (i = 1; i <= a; i++) 
+    cout << w[i] << " ";
+  cout << endl;
+  return 0;
+}
