@@ -1,0 +1,31 @@
+#include <iostream>
+
+using namespace std;
+int aparcifra(unsigned long int numar, int cifra) 
+{
+  int ct = 0;
+  while (numar) {
+    if (numar % 10 == cifra) ct++;
+    numar = numar / 10;
+  }
+  return ct;
+}
+int main() {
+  int v[25], n, i; 
+  cout << "n=";
+  cin >> n; 
+  cout << "c=";
+  cin >> c;
+  for (i = 1; i <= n; i++) 
+  {
+    cout << "v[" << i << "] = ";
+    cin >> v[i];
+    cout << endl;
+  }
+  for (i = 1; i <= n; i++) 
+    v[i] = aparcifra(v[i], c);
+  for (i = 1; i <= n; i++) 
+  cout << v[i] <<" ";
+  cout << endl;
+  return 0;
+}
