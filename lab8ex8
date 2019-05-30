@@ -1,0 +1,25 @@
+#include <iostream>
+
+#include <string.h>
+
+using namespace std;
+int main() {
+  char s[100], i, n, j, k;
+  cout << "s=";
+  cin.get(s, 100);
+  n = strlen(s);
+  for (i = 0; i <= n; i++) {
+    for (j = "A"; j <= "Z"; j++)
+      if (s[i] == j)
+        s[i] = s[i + 32];
+  }
+  for (i = 0; i <= n; i++) {
+    for (k = "a"; k <= "z"; k++)
+      if (s[i] == j)
+        s[i] = s[i - 32];
+  }
+  for (i = 0; i <= n; i++)
+    cout << s[i];
+  cout << endl;
+  return 0;
+}
