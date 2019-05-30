@@ -1,0 +1,416 @@
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <iostream>
+#include <fstream>
+#include <dos.h>
+#include <string.h>
+
+using namespace std;
+struct nod{
+  nod * ante;
+  char nume[30];
+  float lat, lng;
+  nod * post;
+};
+
+
+nod * curent, * prim, * ultim, * ajut, * aux;
+int n=0, i, poz, pozcautat, gasit;
+char oras[30], numefis[25];
+
+
+
+void creare(){
+
+  cout<<"Pun bazele unei noi liste, prin crearea primului nod"<<endl<<endl;
+
+  prim = new nod;
+  cout << "nume = ? "; gets(prim -> nume);
+  cout << "latitudinea = ? "; cin >> prim -> lat;
+  cout <<  "longitudinea = ? "; cin >> prim -> lng;
+  prim -> ante = 0;
+  prim -> post = 0;
+  ultim = prim;
+  n=1;
+}
+
+
+
+void listarestdr(){
+
+  cout<<"Lista are "<<n<<" noduri"<<endl;
+  cout<<"Lista de la stanga la dreapta : "<<endl<<endl;
+  curent = prim;
+  while(curent -> post !=0){
+    cout<<curent->nume<<" "<<curent->lat<<" "<<curent->lng<<endl;
+    curent = curent -> post;
+  }
+  cout<<curent->nume<<" "<<curent->lat<<" "<<curent->lng<<endl;
+
+}
+
+
+void listaredrst(){
+
+  cout<<"Lista are "<<n<<" noduri"<<endl;
+  cout<<"Lista de la dreapta la stanga : "<<endl<<endl;
+  curent = ultim;
+  while(curent -> ante !=0){
+    cout<<curent->nume<<" "<<curent->lat<<" "<<curent->lng<<endl;
+    curent = curent -> ante;
+  }
+  cout<<curent->nume<<" "<<curent->lat<<" "<<curent->lng<<endl;
+
+}
+
+
+void insmijloc(){
+
+  int rasp;
+  cout<<" Inserarea unui nod dupa un nod cu un nume cautat"<<endl;
+  cout<<" Introduceti numele orasului cautat: "; gets(oras);
+  cout<<" cauti orasul "<<oras<<endl<<endl;
+  poz=0;
+
+  i=1; int gasit=0;
+  curent=prim;
+  while(i<=n && !gasit){
+  cout<<"sunt la orasul "<<curent->nume<<endl;
+  cout<<"compar orasul "<<oras<<" cu "<<curent->nume<<endl;
+  if(!strcmp(oras,curent->nume)) {poz=i; gasit=1; cout<<"atentie!"<<endl;}
+  cout<<"gasit="<<gasit<<endl;
+  curent=curent->post;
+  i++;
+  }
+  if(gasit) {
+    cout<<"am gasit orasul pe pozitia "<<poz<<endl;
+    ajut=new nod;
+    cout<<"Introduceti noul nume de oras "; gets(ajut -> nume);
+    cout<<"Introduceti latitudinea noului oras "; cin>>ajut -> lat;
+    cout<<"Introduceti longitudinea noului oras "; cin>>ajut -> lng;
+    curent = curent ->ante;
+    ajut -> ante = curent;
+    ajut -> post = curent -> post;
+    curent -> post = ajut;
+    aux = ajut -> post;
+    aux -> ante = ajut;
+    n++;
+  }
+
+}
+
+
+void insinaint(){
+
+  cout<<"Inserez un nod inainte de prima pozitie"<<endl<<endl;
+
+  ajut = new nod;
+  cout << "nume = ? "; gets(ajut -> nume);
+  cout << "latitudinea = ? "; cin >> ajut -> lat;
+  cout <<  "longitudinea = ? "; cin >> ajut -> lng;
+  ajut -> post = prim;
+  prim -> ante = ajut;
+  ajut -> ante = 0;
+  prim = ajut;
+  n++;
+}
+
+
+void inscoada(){
+
+  cout<<"Inserez un nod dupa ultima pozitie"<<endl<<endl;
+
+  ajut = new nod;
+  cout << "nume = ? "; gets(ajut -> nume);
+  cout << "latitudinea = ? "; cin >> ajut -> lat;
+  cout <<  "longitudinea = ? "; cin >> ajut -> lng;
+  ajut -> ante = ultim;
+  ultim -> post = ajut;
+  ajut -> post = 0;
+  ultim = ajut;
+  n++;
+}
+void stergint(){
+
+  int rasp;
+  cout<<"In constructie. Voi sterge un nod din interior";
+  cout<<endl<<endl;
+  cout<<"Alegeti:"<<endl<<
+  "1. Stergerea unui nod de pe o pozitie data"<<endl<<
+  "2. Stergerea unui nod cu un continut dat"<<endl;
+  cin>>rasp;
+
+  if(rasp==1){
+  cout<<"Introduceti pozitia orasului cautat: "; cin>>pozcautat;
+  cout<<"cauti orasul de pe pozitia "<<pozcautat<<endl<<endl;
+  poz=0;
+
+  i=1; int gasit=0;
+  curent=prim;
+  while(i<=n && !gasit){
+  if(i==pozcautat){poz=i;gasit=1;break;}
+  curent=curent->post;
+  i++;
+  }
+  if(gasit){
+  aux=curent->ante;
+  aux->post=curent->post;
+  aux=curent->post;
+  aux->ante=curent->ante;
+  n--;
+  cout<<"Lista are acum "<<n<<" noduri"<<endl;
+  }
+  else cout<<"Nu exista pozitia cautata in lista"<<endl;
+  }
+
+  if(rasp==2){
+
+  cout<<"Introduceti numele orasului cautat: "; gets(oras);
+  cout<<"cauti orasul "<<oras<<endl<<endl;
+  poz=0;
+
+  i=1; int gasit=0;
+  curent=prim;
+  while(i<=n && !gasit){
+  cout<<"sunt la orasul "<<curent->nume<<endl;
+  cout<<"compar orasul "<<oras<<" cu "<<curent->nume<<endl;
+  if(!strcmp(oras,curent->nume)) {poz=i; gasit=1; cout<<"atentie!"<<endl;}
+  cout<<"gasit="<<gasit<<endl;
+  curent=curent->post;
+  i++;
+  }
+  if(gasit) {
+    cout<<"am gasit orasul pe pozitia "<<poz<<endl;
+    curent = curent -> ante;
+    aux = curent ->ante;
+    aux -> post = curent -> post;
+    aux = curent -> post;
+    aux -> ante = curent -> ante;
+    n--;
+    cout<<"Lista are acum "<<n<<" noduri"<<endl;
+  }
+  else cout<<"n-am gasit orasul"<<endl;
+  }
+
+}
+
+
+void stergprim(){
+
+  cout<<"Sterg primul nod"<<endl;
+  if(ultim->ante==0 && ultim->post==0)
+  {cout<< "A mai ramas un singur nod" <<endl;}
+  else{curent=prim->post;
+  curent->ante=0;
+
+  prim=curent;
+  n--;
+  }
+  cout<<"Lista are acum "<<n<<" noduri"<<endl;
+}
+
+
+void stergult(){
+
+  cout<<"Sterg ultimul nod"<<endl;
+  if(ultim->ante==0 && ultim->post==0)
+  {cout<< "A mai ramas un singur nod" <<endl;}
+  else
+  {curent=ultim->ante;
+  curent->post=0;
+  ultim=curent;
+  n--;}
+  cout<<"Lista are acum "<<n<<" noduri"<<endl;
+}
+
+
+
+void modific(){
+  int rasp;
+  cout<<endl<<endl;
+  cout<<"Alegeti:"<<endl;
+  cout<<"1. Modificarea continutului unui nod de pe o pozitie data"<<endl;
+  cout<<"2. Modificarea continutului unui nod cu un nume dat"<<endl;
+  cin>>rasp;
+
+  if(rasp==1){
+  cout<<"Introduceti pozitia orasului cautat: "; cin>>pozcautat;
+  cout<<"cauti orasul de pe pozitia "<<pozcautat<<endl<<endl;
+  poz=0;
+
+  i=1; int gasit=0;
+  curent=prim;
+  while(i<=n && !gasit){
+  if(i==pozcautat){poz=i;gasit=1;break;}
+  curent=curent->post;
+  i++;
+  }
+  if(gasit){
+    cout<<"am gasit orasul de pe pozitia "<<poz<<endl;
+    cout<<"Introduceti noul nume de oras "; gets(curent -> nume);
+    cout<<"Introduceti latitudinea noului oras "; cin>>curent -> lat;
+    cout<<"Introduceti longitudinea noului oras "; cin>>curent -> lng;
+  }
+  else cout<<"nu exista pozitia cautata in lista"<<endl;
+  }
+
+  if(rasp==2){
+
+  cout<<"Introduceti numele orasului cautat: "; gets(oras);
+  cout<<"cauti orasul "<<oras<<endl<<endl;
+  poz=0;
+
+  i=1; int gasit=0;
+  curent=prim;
+  while(i<=n && !gasit){
+  cout<<"sunt la orasul "<<curent->nume<<endl;
+  cout<<"compar orasul "<<oras<<" cu "<<curent->nume<<endl;
+  if(!strcmp(oras,curent->nume)) {poz=i; gasit=1; cout<<"atentie!"<<endl;break;}
+  cout<<"gasit="<<gasit<<endl;
+  curent=curent->post;
+  i++;
+  }
+  if(gasit) {
+    cout<<"am gasit orasul pe pozitia "<<poz<<endl;
+    cout<<"Introduceti noul nume de oras "; gets(curent -> nume);
+    cout<<"Introduceti latitudinea noului oras "; cin>>curent -> lat;
+    cout<<"Introduceti longitudinea noului oras "; cin>>curent -> lng;
+  }
+  else cout<<"n-am gasit orasul"<<endl;
+  }
+}
+
+void salvez(){
+
+  cout<<"Salvez lista in fisier"<<endl;
+  cout<<"Numele fisierului de iesire: "; cin>>numefis;
+  ofstream fout(numefis);
+  fout<<n<<" "<<endl;
+  curent=prim;
+  fout<<curent->nume<<" "<<curent->lat<<" "<<curent->lng<<" "<<endl;
+  for(i=2; i<=n; i++){
+    curent=curent->post;
+    fout<<curent->nume<<" "<<curent->lat<<" "<<curent->lng<<" "<<endl;
+  }
+
+}
+
+
+void caut(){
+  cout<<"Caut un nod cu un continut dat"<<endl;
+
+  cout<<"In constructie. Voi cauta un nod cu un continut dat"<<endl;
+  cout<<"Introduceti nume orasului cautat: "; gets(oras);
+  cout<<"cauti orasul "<<oras<<endl<<endl;
+  poz=0;
+
+  i=1; int gasit=0;
+  curent=prim;
+  while(i<=n && !gasit){
+  cout<<"sunt la orasul "<<curent->nume<<endl;
+  cout<<"compar orasul "<<oras<<" cu "<<curent->nume<<endl;
+  if(!strcmp(oras,curent->nume)) {poz=i; gasit=1; cout<<"atentie!"<<endl;break;}
+  cout<<"gasit="<<gasit<<endl;
+  curent=curent->post;
+  i++;
+  }
+  if(gasit) cout<<"am gasit orasul pe pozitia "<<poz<<endl;
+  else cout<<"n-am gasit orasul"<<endl;
+
+}
+
+
+
+
+
+void meniu2(){
+
+int rasp;
+  cout<<"OPERATII CU LISTE :"<<endl<<endl;
+    cout<<endl;
+    cout<<" 1: listare de la stanga la dreapta"<<endl;
+    cout<<" 2: listare de la dreapta la stanga"<<endl;
+    cout<<" 3: inserare nod in interiorul listei"<<endl;
+    cout<<" 4: inserare nod pe prima pozitie"<<endl;
+    cout<<" 5: inserare nod pe ultima pozitie"<<endl;
+    cout<<" 6: stergerea unui nos din interiorul listei"<<endl;
+    cout<<" 7: stergerea primului nod"<<endl;
+    cout<<" 8: stergerea ultimului nod"<<endl;
+    cout<<" 9: modificarea continutului unui nod"<<endl;
+    cout<<"10: reprezentare grafica"<<endl;
+    cout<<"11: salvez lista"<<endl;
+    cout<<"12: caut dupa continut"<<endl<<endl;
+
+  cin>>rasp;
+
+  switch (rasp){
+    case 1: listarestdr();break;
+    case 2: listaredrst();break;
+    case 3: insmijloc();break;
+    case 4: insinaint();break;
+    case 5: inscoada();break;
+    case 6: stergint();break;
+    case 7: stergprim();break;
+    case 8: stergult();break;
+    case 9: modific();break;
+    case 11: salvez();break;
+    case 12: caut();break;
+    default: exit(1);
+  }
+  meniu2();
+}
+
+
+
+int citire(){
+
+  cout<<"Citesc lista din fisier"<<endl;
+  cout<<"Numele fisierului de intrare: "; cin>>numefis;
+  ifstream fin(numefis);
+  fin>>n; cout<<"in fisier sunt "<<n<<" orase"<<endl;
+
+
+  prim = new nod;
+  fin>>(prim -> nume);
+  fin >> prim -> lat;
+  fin >> prim -> lng;
+  prim -> ante = 0;
+  prim -> post = 0;
+  ultim = prim;
+  cout<<"1"<<" "<<prim -> nume<<" "<<prim -> lat<<" "<<prim -> lng<<" "<<prim -> ante<<" "<<prim -> post<<endl;
+
+for(i=2; i<=n; i++){
+  ajut = new nod;
+  fin>>(ajut -> nume);
+  fin >> ajut -> lat;
+  fin >> ajut -> lng;
+  ajut -> ante = ultim;
+  ultim -> post = ajut;
+  ajut -> post = 0;
+  ultim = ajut;
+}
+  return 0;
+}
+
+
+void meniu1(){
+
+int rasp;
+  cout<<"EXPLOATAREA LISTELOR INLANTUITE"<<endl<<endl;
+  cout<<"1 Citire lista din fisier"<<endl;
+  cout<<"2 Lista noua"<<endl<<endl;
+  cin>>rasp;
+  switch (rasp){
+    case 1: citire();meniu2();break;
+    case 2: creare();meniu2();break;
+    default: exit(1);
+  }
+
+}
+
+
+int main(){
+  meniu1();
+}
