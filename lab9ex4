@@ -1,0 +1,26 @@
+#include <iostream>
+
+using namespace std;
+int fibo(int n) 
+{
+  int c = 0;
+  if (n == 0) {
+    return 0;
+    c++;
+  }
+  if (n == 1) {
+    return 1;
+    c++;
+  } else {
+    return fibo(n - 2) + fibo(n - 1);
+    c++;
+  }
+}
+int main() {
+  int n;
+  cout << "n=";
+  cin >> n;
+  cout << fibo(n);
+  cout << endl;
+  return 0;
+}
