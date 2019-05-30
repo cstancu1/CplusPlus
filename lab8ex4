@@ -1,0 +1,17 @@
+#include <iostream>
+
+#include <string.h>
+
+using namespace std;
+int main() {
+  char s[100], i;
+  cout << "s=";
+  cin.get(s, 100);
+  while (i < strlen(s)) {
+    if (strchr("aeiouAEIOU", s[i]))
+      cout << s[i];
+    i++;
+  }
+  cout << endl;
+  return 0;
+}
