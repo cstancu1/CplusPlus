@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+int main() {
+  int aux, L1, L2, a[100][100]; 
+  cout << "nl=";
+  cin >> nl; 
+  cout << "nc=";
+  cin >> nc;
+  for (i = 1; i <= nl; i++) 
+    for (j = 1; j <= nc; j++) {
+      cout << "a[" << i << "][" << j << "]=";
+      cin >> a[i][j];
+    }
+  cout << "L1=";
+  cin >> L1; 
+  cout << "L2=";
+  cin >> L2;
+  for (j = 1; j <= n; j++) {
+    aux = a[L1][j];
+    a[L1][j] = a[L2][j];
+    a[L2][j] = aux;
+  }
+  for (i = 1; i <= n; i++) {
+    for (j = 1; j <= n; j++)
+      cout << a[i][j] << " ";
+    cout << endl;
+  }
+  return 0;
+}
