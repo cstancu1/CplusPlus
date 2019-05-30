@@ -1,0 +1,20 @@
+#include <iostream>
+
+using namespace std;
+int aparcifra(unsigned long int numar) {
+  int ct = 0;
+  while (numar) {
+    if (numar % 10 == cifra) ct++;
+    numar = numar / 10;
+  }
+  return ct;
+}
+int main() {
+  int n, i, ct = 0; 
+  cout << "n=";
+  cin >> n; 
+  for (i = 0; i <= 8; i = i + 2)
+    ct = ct + aparcifra(n, i);
+  cout << ct << " cifre pare" << endl; 
+  return 0;
+}
