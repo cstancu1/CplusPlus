@@ -1,0 +1,8 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main()
+{
+    char s[100], n, i; int c=0, v=0;
+    cout<<"s="; cin.get(s, 100);
+}
