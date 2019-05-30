@@ -1,0 +1,26 @@
+#include <iostream>
+
+#include <math.h>
+
+using namespace std;
+int main() {
+  int v[100], n, k, i, aux; 
+  cout << "n=";
+  cin >> n; 
+  cout << "k=";
+  cin >> k;
+  for (i = 1; i <= n; i++)
+  {
+    cout << "v[" << i << "]=";
+    cin >> v[i];
+    cout << endl;
+  }
+  aux = v[1]; 
+  for (i = 2; i <= n; i++)
+    v[i - 1] = v[i];
+  v[n] = aux;
+  for (i = 1; i <= n; i++) 
+    cout << v[i] << " ";
+  cout << endl;
+  return 0;
+}
