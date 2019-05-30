@@ -1,0 +1,25 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+int cmmdc(int a, int b) {
+  if (b == 0)
+    return a;
+  else
+    return cmmdc(b, a % b);
+}
+
+int main ()
+{
+    int a, b;
+
+    cout << "a = ";
+    cin >> a;
+    cout << "b = ";
+    cin >> b;
+    int res = cmmdc(a, b);
+    cout << res;
+
+    return 0;
+}
